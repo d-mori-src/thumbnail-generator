@@ -1,6 +1,9 @@
 import React, { useState } from "react";
 
-type SizeOption = "1280x720" | "1:1";
+// eslint-disable-next-line
+const apiKey = process.env.REACT_APP_GEMINI_API_KEY;
+
+type SizeOption = "1200x630" | "1:1";
 type Mode = "single" | "multi";
 
 const tasteOptions = ["メディア風", "エンタメ", "高級感"] as const;
@@ -9,7 +12,7 @@ function App() {
   const [title, setTitle] = useState("");
   const [image, setImage] = useState<File | null>(null);
   const [taste, setTaste] = useState<(typeof tasteOptions)[number]>("メディア風");
-  const [size, setSize] = useState<SizeOption>("1280x720");
+  const [size, setSize] = useState<SizeOption>("1200x630");
   const [mode, setMode] = useState<Mode>("single");
 
   const [prompt, setPrompt] = useState("");
@@ -58,8 +61,8 @@ ${image ? "アップロード画像を主要被写体として使用（顔・構
 
     if (mode === "single") {
       const sizeText =
-        size === "1280x720"
-          ? "横長 16:9（YouTubeサムネイルサイズ）"
+        size === "1200x630"
+          ? "横長 1200x630（OGP/SNS広告サイズ）"
           : "正方形 1:1";
 
       const promptSingle = `
@@ -127,7 +130,7 @@ ${baseCommon}
       <div>
         <label>サイズ</label>
         <select value={size} onChange={(e) => setSize(e.target.value as SizeOption)}>
-          <option value="1280x720">1280x720</option>
+          <option value="1200x630">1200x630</option>
           <option value="1:1">1:1</option>
         </select>
       </div>
@@ -141,8 +144,6 @@ ${baseCommon}
       </div>
 
       <button onClick={generatePrompt}>プロンプト生成</button>
-
-      <hr />
 
       <div>
         <h3>生成プロンプト</h3>

@@ -70,31 +70,6 @@ ${image ? "アップロード画像を主要被写体として使用（顔・構
     setPrompt(promptSingle);
   };
 
-  // 4. Gemini API 疎通テスト用関数
-  // const testGeminiCommunication = async () => {
-  //   if (!genAI) {
-  //     alert("APIキーが設定されていません。.envを確認してください。");
-  //     return;
-  //   }
-
-  //   setLoading(true);
-  //   try {
-  //     const model = genAI.getGenerativeModel({ model: "gemini-2.5-flash" });
-
-  //     const testMessage = `以下のプロンプトを受け取りましたか？「OK」とだけ返してください。\n\n${prompt}`;
-
-  //     const result = await model.generateContent(testMessage);
-  //     const response = await result.response;
-  //     console.log("Geminiからの応答:", response.text());
-  //     alert("疎通確認成功！コンソールを確認してください。");
-  //   } catch (error) {
-  //     console.error("通信エラー:", error);
-  //     alert("通信に失敗しました。");
-  //   } finally {
-  //     setLoading(false);
-  //   }
-  // };
-
   // 1. Helper関数: FileオブジェクトをGeminiが扱えるBase64形式に変換
   async function fileToGenerativePart(file: File) {
     const base64EncodedDataPromise = new Promise((resolve) => {
